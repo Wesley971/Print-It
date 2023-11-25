@@ -16,3 +16,61 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
+
+
+// Variable
+
+const dots = document.querySelector(".dots")
+const arrowRight = document.querySelector(".arrow_right")
+const arrowLeft = document.querySelector(".arrow_left")
+const img = document.querySelector("#banner .banner-img") 
+const p = document.querySelector("#banner p")
+
+let index = 0
+
+// Boucles
+
+function displayDots(){
+	for (let i = 0; i < slides.length; i++){
+		const dot = document.createElement("div")
+		dot.classList.add("dot")
+		dots.appendChild(dot)
+		if (i == index) {
+			dot.classList.add("dot_selected")
+		}
+	}
+}
+displayDots()
+
+// Fonction clique droit
+
+function clickRight(){
+	arrowRight.addEventListener("click", () => {
+		console.log("Test fleche droite");
+		index++;
+		if (index >= slides.length){
+			index = 0
+		}
+		img.src = `./assets/images/slideshow/${slides[index].image}`;
+		p.innerHTML = slides[index].tagLine
+		console.log(p);
+	} )
+
+}
+
+clickRight()
+//Focntion clique gauche
+function clickLeft(){
+	arrowLeft.addEventListener("click", () => {
+		
+		index--
+		if(index < 0){
+			index = slides.length -1;
+		}
+		img.src = `./assets/images/slideshow/${slides[index].image}`;
+		p.innerHTML = slides[index].tagLine
+	}
+	)
+}
+clickLeft()
+
