@@ -46,14 +46,19 @@ displayDots()
 
 function clickRight(){
 	arrowRight.addEventListener("click", () => {
-		console.log("Test fleche droite");
+		const slidesDots = document.querySelectorAll(".dots .dot")
+		slidesDots[index].classList.remove("dot_selected")
+
+		
+		console.log("Vers la droite");
 		index++;
 		if (index >= slides.length){
 			index = 0
 		}
+		slidesDots[index].classList.add("dot_selected")
 		img.src = `./assets/images/slideshow/${slides[index].image}`;
 		p.innerHTML = slides[index].tagLine
-		console.log(p);
+		
 	} )
 
 }
@@ -62,11 +67,14 @@ clickRight()
 //Focntion clique gauche
 function clickLeft(){
 	arrowLeft.addEventListener("click", () => {
-		
+		const slidesDots = document.querySelectorAll(".dots .dot")
+		slidesDots[index].classList.remove("dot_selected")
+		console.log("Vers la gauche");
 		index--
 		if(index < 0){
 			index = slides.length -1;
 		}
+		slidesDots[index].classList.add("dot_selected")
 		img.src = `./assets/images/slideshow/${slides[index].image}`;
 		p.innerHTML = slides[index].tagLine
 	}
